@@ -100,12 +100,12 @@ h1{
 .movie_img{
     width: 100%;
 }
-@media (min-width: 650px){
+@media (min-width: 790px){
     #search_icons{
         display: none;
     }
 }
-@media (max-width: 650px){
+@media (max-width: 790px){
     .movie_grid{
         display: flex;
         flex-direction: column;
