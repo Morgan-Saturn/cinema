@@ -1,0 +1,93 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    height: 100vh;
+    width: 70%;
+    margin: auto;
+}
+h1{
+    text-align: center;
+    font-weight: bolder;
+}
+.tags{
+    font-weight: bolder;
+    display: flex;
+    justify-content: space-between;
+}
+.hashtag{
+    color: #FFA200;
+}
+.searchbar_container, 
+.movie_container{
+    background-color: #E3E1E1;
+}
+.searchbar_container button{
+    background-color: #FFE100;
+    border: none;
+    padding-left: 11px;
+    padding-right: 11px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    cursor: pointer;
+}
+.searchbar_container{
+    display: flex;
+    justify-content: space-between;
+}
+.searchbar input[type=text], .searchbar_container a{
+    margin-left: 40px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+.searchbar_container a{
+    margin-right: 40px;
+}
+.searchbar{
+    width: 50%;
+}
+.searchbar input[type=text]{
+    width: 70%;
+}
+.connect{
+    color: #24A4EA;
+    cursor: pointer;
+}
+.movie_container h2{
+    text-align: center;
+    margin-top: 1rem;
+}
+.movie_grid{
+    display: grid;
+    gap: 40px 40px;
+    grid-template-columns: 1fr 1fr 1fr; 
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: 
+        "movie1 movie2 movie3"
+        "movie4 movie5 movie6";
+}
+.movie_grid .summary{
+    color: #9A9DA2;
+}
+.movie_1{
+    grid-area: movie1;
+}
+.movie_2{
+    grid-area: movie2;
+}
+.movie_3{
+    grid-area: movie3;
+}
+.movie_4{
+    grid-area: movie4;
+}
+.movie_5{
+    grid-area: movie5;
+}
+.movie_6{
+    grid-area: movie6;
+}
+.movie_1,.movie_2,.movie_3,.movie_4,.movie_5,.movie_6{
+    margin: auto;
+}
