@@ -100,3 +100,42 @@ h1{
 .movie_img{
     width: 100%;
 }
+@media (min-width: 650px){
+    #search_icons{
+        display: none;
+    }
+}
+@media (max-width: 650px){
+    .movie_grid{
+        display: flex;
+        flex-direction: column;
+    }
+    body{
+        width: 100%;
+        height: 100vh;
+        background-size: cover;
+    }
+    .tags{
+        font-size: 10pt;
+        gap: 10px;
+    }
+    .searchbar_container{
+        display: none;
+    }
+    .searchbar_container{
+        background-size: cover;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        width: 100vw;
+    }
+    .searchbar_container .searchbar{
+        width: 100%;
+        
+    }
+    .searchbar_container input[type=search],
+    .searchbar_container button{
+        width: 95%;
+        margin: 10px;
+    }
+}
