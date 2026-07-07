@@ -34,6 +34,8 @@ h1{
 .searchbar_container{
     display: flex;
     justify-content: space-between;
+    position: sticky;
+    top: 0%;
 }
 .searchbar input[type=search], .searchbar_container a{
     margin-left: 40px;
