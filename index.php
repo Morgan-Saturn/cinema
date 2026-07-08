@@ -1,6 +1,7 @@
 <?php
     libxml_use_internal_errors(true); //permet de gérer les erreurs sans crasher tout le script php
 
+    //cURL sert à faire des appels d'API, fetch des pages web ou envoyer des données à des serveurs avec des url. Il permet de faire des requêtes http.
     $allocine_rss = "https://www.allocine.fr/rss/news-cine.xml";
     $xml = simplexml_load_file($allocine_rss) or die("can't load xml");
 
