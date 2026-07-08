@@ -11,10 +11,13 @@
         $title = (string)$items[$i]->title;
         $link = (string)$items[$i]->link;
         $description = (string)$items[$i]->description;
+        $img_url = (string)$items[$i]->enclosure->attributes()->url;
         $html .= "<div class='movie_grid'>
-                    <img class='movie_img' src='assets/example_movie.png' alt='affiche du film'>
-                    <h3 class='categories'><a href='$link'>$title</a></h3>
-                    <p class='summary'>$description</p>
+                    <div class='movie'>
+                        <img class='movie_img' src='$img_url' style='width: 100%; height: 50%;' alt='affiche du film'>
+                        <h3 class='categories'><a href='$link'>$title</a></h3>
+                        <p class='summary'>$description</p>
+                    </div>
                 </div>";
         
     }
@@ -60,33 +63,33 @@
         </div>
         <div class="movie_container">
             <h2>FILMS A L'AFFICHE</h2>
-            <div class="movie_grid">
-                <div class="movie_1">
+           <div class="movie_grid">
+                <div class="movie">
                     <img class="movie_img" src="assets/example_movie.png" alt="affiche du film">
-                    <h3 class="categories"><?php echo($item->title ?? 'No title') ?></h3>
-                    <p class="summary"><?php echo($item->description ?? 'No description') ?></p>
+                    <h3 class="categories">title</h3>
+                    <p class="summary">lorem lorem lorem</p>
                 </div>
-                <div class="movie_2">
+                <div class="movie">
                     <img class="movie_img" src="assets/example_movie.png" alt="affiche du film">
                     <h3 class="categories"><?php echo($item->title ?? 'No title') ?></h3>
                     <p class="summary">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. </p>
                 </div>
-                <div class="movie_3">
+                <div class="movie">
                     <img class="movie_img" src="assets/example_movie.png" alt="affiche du film">
                     <h3 class="categories">Film3</h3>
                     <p class="summary">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. </p>
                 </div>
-                <div class="movie_4">
+                <div class="movie">
                     <img class="movie_img" src="assets/example_movie.png" alt="affiche du film">
                     <h3 class="categories">Film4</h3>
                     <p class="summary">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. </p>
                 </div>
-                <div class="movie_5">
+                <div class="movie">
                     <img class="movie_img" src="assets/example_movie.png" alt="affiche du film">
                     <h3 class="categories">Film5</h3>
                     <p class="summary">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. </p>
                 </div>
-                <div class="movie_6">
+                <div class="movie">
                     <img class="movie_img" src="assets/example_movie.png" alt="affiche du film">
                     <h3 class="categories">Film6</h3>
                     <p class="summary">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. </p>

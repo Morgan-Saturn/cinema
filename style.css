@@ -69,32 +69,16 @@ h1{
     margin-left: 10%;
     margin-right: 10%;
     margin-top: 3%;
-    grid-template-areas: 
-        "movie1 movie2 movie3"
-        "movie4 movie5 movie6";
+    grid-template-columns: 1fr 1fr 1fr; 
+    grid-template-rows: 1fr 1fr;
+    grid-auto-columns: 1fr;
+    grid-auto-rows: 1fr;
 }
 .movie_grid .summary{
     color: #9A9DA2;
 }
-.movie_1{
-    grid-area: movie1;
-}
-.movie_2{
-    grid-area: movie2;
-}
-.movie_3{
-    grid-area: movie3;
-}
-.movie_4{
-    grid-area: movie4;
-}
-.movie_5{
-    grid-area: movie5;
-}
-.movie_6{
-    grid-area: movie6;
-}
-.movie_1,.movie_2,.movie_3,.movie_4,.movie_5,.movie_6{
+
+.movie{
     display: flex;
     flex-direction: column;
     align-items: center;
