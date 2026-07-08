@@ -1,34 +1,34 @@
 <?php
     libxml_use_internal_errors(true); //permet de gérer les erreurs sans crasher tout le script php
 
-    //mise en cache du flux rss
-    if(time() - filemtime("cache_allo_cine.xml") > 1800) //1800 correspond à 30 minutes converties en secondes
-        {
-        $allocine_rss = "https://www.allocine.fr/rss/news-cine.xml";
-        //si le serveur d'allocine est inaccessible
-        if (!empty($allocine_rss)) 
-            {
-            file_put_contents("cache_allo_cine.xml", $allocine_rss);
-            }
-        else    
-            {
-                $allocine_rss = file_get_contents("cache_allo_cine.xml");
-            }
-        }
-        else
-        {
-            $allocine_rss = file_get_contents("cache_allo_cine.xml");
-        } 
+    $allocine_rss = "https://www.allocine.fr/rss/news-cine.xml";
+    $xml = simplexml_load_file($allocine_rss) or die("can't load xml");
 
-        $rss_load = simplexml_load_file($allocine_rss);
-        foreach ($rss_load->channel->item as $item) {
-            $title = htmlspecialchars($item->title ?? 'No title');
-            $link = htmlspecialchars($item->link ?? '#');
-            $description = htmlspecialchars($item->description ?? 'No description');
-            echo "<li><a href=\"$link\">$title</a>$description</li>";
-            //echo $item->link."<br>";
-        }
+    $html = "";
+    $items = $xml->channel->item;
 
+    for ($i = 0; $i < 7; $i++) {
+        $title = (string)$items[$i]->title;
+        $link = (string)$items[$i]->link;
+        $description = (string)$items[$i]->description;
+        $html .= "<div class='movie_grid'>
+                    <img class='movie_img' src='assets/example_movie.png' alt='affiche du film'>
+                    <h3 class='categories'><a href='$link'>$title</a></h3>
+                    <p class='summary'>$description</p>
+                </div>";
+        
+    }
+    echo $html;
+
+    //$rss_items = array();
+    /*foreach ($xml->channel->item as $item) {
+        $title = htmlspecialchars($item->title ?? 'No title');
+        $link = htmlspecialchars($item->link ?? '#');
+        $description = htmlspecialchars($item->description ?? 'No description');
+        $thumbnail = $item->children('media', true)->thumbnail;
+        $img_url = htmlspecialchars((string)$thumbnail->attributes()->url);
+        //$rss_items[] =
+    }*/
 ?>
 
 <!DOCTYPE html>
@@ -63,12 +63,12 @@
             <div class="movie_grid">
                 <div class="movie_1">
                     <img class="movie_img" src="assets/example_movie.png" alt="affiche du film">
-                    <h3 class="categories">Film1</h3>
-                    <p class="summary">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. </p>
+                    <h3 class="categories"><?php echo($item->title ?? 'No title') ?></h3>
+                    <p class="summary"><?php echo($item->description ?? 'No description') ?></p>
                 </div>
                 <div class="movie_2">
                     <img class="movie_img" src="assets/example_movie.png" alt="affiche du film">
-                    <h3 class="categories">Film2</h3>
+                    <h3 class="categories"><?php echo($item->title ?? 'No title') ?></h3>
                     <p class="summary">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. </p>
                 </div>
                 <div class="movie_3">
