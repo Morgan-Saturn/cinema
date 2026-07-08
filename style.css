@@ -82,6 +82,13 @@ h1{
 .movie_img{
     width: 100%;
 }
+.categories a{
+    text-decoration: none; 
+    color: black;
+}
+.categories a:hover{
+    color:green;
+}
 @media (min-width: 790px){
     #search_icons{
         display: none;
