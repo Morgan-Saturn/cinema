@@ -7,31 +7,21 @@
     $html = "";
     $items = $xml->channel->item;
 
-    for ($i = 0; $i < 7; $i++) {
+    for ($i = 0; $i < 6; $i++) {
         $title = (string)$items[$i]->title;
-        $link = (string)$items[$i]->link;
-        $description = (string)$items[$i]->description;
+        $link = strip_tags((string)$items[$i]->link);
+        $description = strip_tags((string)$items[$i]->description);
         $img_url = (string)$items[$i]->enclosure->attributes()->url;
         $html .= "<div class='movie_grid'>
                     <div class='movie'>
                         <img class='movie_img' src='$img_url' style='width: 100%; height: 50%;' alt='affiche du film'>
-                        <h3 class='categories'><a href='$link'>$title</a></h3>
+                        <h3 class='categories'><a href='$link' style='text-decoration: none; color: black;'>$title</a></h3>
                         <p class='summary'>$description</p>
                     </div>
                 </div>";
         
     }
     echo $html;
-
-    //$rss_items = array();
-    /*foreach ($xml->channel->item as $item) {
-        $title = htmlspecialchars($item->title ?? 'No title');
-        $link = htmlspecialchars($item->link ?? '#');
-        $description = htmlspecialchars($item->description ?? 'No description');
-        $thumbnail = $item->children('media', true)->thumbnail;
-        $img_url = htmlspecialchars((string)$thumbnail->attributes()->url);
-        //$rss_items[] =
-    }*/
 ?>
 
 <!DOCTYPE html>
