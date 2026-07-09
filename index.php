@@ -1,36 +1,42 @@
 <?php
+
     libxml_use_internal_errors(true); //permet de gérer les erreurs sans crasher tout le script php
 
-    //cURL sert à faire des appels d'API, fetch des pages web ou envoyer des données à des serveurs avec des url. Il permet de faire des requêtes http.
-
+    $contenu = NULL;
     $allocine_rss = "https://www.allocine.fr/rss/news-cine.xml";
     $cache_allocine = "cache/cache_allocine.xml";
-    $contenu = NULL;
-
-    if (!file_exists($cache_allocine) || time() - filemtime($cache_allocine) > 1800) //1800s = 30 min
-    {
-        $rss_curl_handle = curl_init($allocine_rss);
-        curl_setopt($rss_curl_handle, CURLOPT_RETURNTRANSFER, true); //curlopt_returntransfer retourne le fichier sous forme de chaînes de caractères
-        $contenu = curl_exec($rss_curl_handle) or die(curl_error($rss_curl_handle));
-        if(!empty($contenu))
+    
+        if (!file_exists($cache_allocine) || time() - filemtime($cache_allocine) > 1800) //1800s = 30 min
         {
-            file_put_contents($cache_allocine, $contenu);
+            try
+            {
+            //cURL sert à faire des appels d'API, fetch des pages web ou envoyer des données à des serveurs avec des url. Il permet de faire des requêtes http.
+            $rss_curl_handle = curl_init($allocine_rss);
+            curl_setopt($rss_curl_handle, CURLOPT_RETURNTRANSFER, true); //curlopt_returntransfer retourne le fichier sous forme de chaînes de caractères
+            $contenu = curl_exec($rss_curl_handle) or die(curl_error($rss_curl_handle));
+            }
+
+            catch (Exception $e)
+            {
+                echo("Couldn't get the rss feed");
+            }
+
+            if(!empty($contenu))
+            {
+                file_put_contents($cache_allocine, $contenu);
+            }
+            else
+            {
+                $contenu = file_get_contents($cache_allocine);
+            }
+            
         }
         else
         {
-            $contenu = file_get_contents($cache_allocine);
+            $contenu ??= file_get_contents($cache_allocine);
         }
-        
-    }
-    else
-    {
-        // = $contenu = $contenu ?? file_get_contents($cache_allocine); soit, il rendra la valeur de $contenu ou si elle est nulle, il renverra file_get_contents($cache_allocine)
-        $contenu ??= file_get_contents($cache_allocine);
-        //?? sert pour les propositions ternaires.Il retourne la première option de la condition si elle existe et est non nulle, autrement, il retourne la deuxième option. On peut utiliser les ?? à la chaîne. Ca permet d'écrire un code plus concis si on travaille avec des variables nulles ou non définies
-    }
 
-    
-    $xml = new SimpleXMLElement($contenu); //or die("can't load xml");
+    $xml = new SimpleXMLElement($contenu);
     $html = "";
     $items = $xml->channel->item;
 
