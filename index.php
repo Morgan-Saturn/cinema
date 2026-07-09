@@ -24,7 +24,9 @@
     }
     else
     {
+        // = $contenu = $contenu ?? file_get_contents($cache_allocine); soit, il rendra la valeur de $contenu ou si elle est nulle, il renverra file_get_contents($cache_allocine)
         $contenu ??= file_get_contents($cache_allocine);
+        //?? sert pour les propositions ternaires.Il retourne la première option de la condition si elle existe et est non nulle, autrement, il retourne la deuxième option. On peut utiliser les ?? à la chaîne. Ca permet d'écrire un code plus concis si on travaille avec des variables nulles ou non définies
     }
 
     
@@ -40,9 +42,9 @@
 
         $html .= "
                     <div class='movie'>
-                        <img class='movie_img' src='$img_url' style='width: 100%; height: 100%;' alt='affiche du film'>
-                        <h3 class='categories'><a href='$link'>$title</a></h3>
-                        <p class='summary'>$description</p>
+                        <img class='movie_img' src='".htmlspecialchars($img_url)."' style='width: 100%; height: 100%;' alt='affiche du film'>
+                        <h3 class='categories'><a href='".htmlspecialchars($link)."'>".htmlspecialchars($title)."</a></h3>
+                        <p class='summary'>".htmlspecialchars($description)."</p>
                     </div>
                 ";
     }
@@ -56,7 +58,7 @@
     <link href="style.css" rel="stylesheet"/>
     <link rel="icon" type="image/png" sies="32x32" href="assets/cinema.png"/>
 
-    <title>Films à l'affiche</title>
+    <title>News ciné</title>
 </head>
 <body>
     <div class="container">
@@ -76,7 +78,7 @@
                 <a class="connect">Connectez-vous pour rechercher dans vos cinémas favoris</a>
         </div>
         <div class="movie_container">
-            <h2>FILMS A L'AFFICHE</h2>
+            <h2>NEWS CINEMA</h2>
            <div class="movie_grid"><?php echo($html);?>
             </div>
         </div>
