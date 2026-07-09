@@ -87,6 +87,7 @@
             <h2>NEWS CINEMA</h2>
            <div class="movie_grid"><?php echo($html);?>
             </div>
+           <button class="voir_plus">PLUS DE NEWS</button>
         </div>
     </div>
 </body>
