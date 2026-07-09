@@ -4,7 +4,7 @@
     //cURL sert à faire des appels d'API, fetch des pages web ou envoyer des données à des serveurs avec des url. Il permet de faire des requêtes http.
 
     $allocine_rss = "https://www.allocine.fr/rss/news-cine.xml";
-    $cache_allocine = "cache_allocine.xml";
+    $cache_allocine = "cache/cache_allocine.xml";
     $contenu = NULL;
 
     if (!file_exists($cache_allocine) || time() - filemtime($cache_allocine) > 1800) //1800s = 30 min
