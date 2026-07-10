@@ -43,6 +43,9 @@
     $html = "";
     $items = $xml->channel->item;
 
+    $max_count = count($items);
+    $results_count = min($results_count, $max_count); //prend le plus petit des deux, évite notamment de faire planter si l'utilisateur rentre un grand nombre
+
     for ($i = 0; $i < $results_count; $i++) {
         $title = (string)$items[$i]->title;
         $link = strip_tags((string)$items[$i]->link);
@@ -56,6 +59,7 @@
                         <p class='summary'>".htmlspecialchars($description)."</p>
                     </div>
                 ";
+        
     }
 ?>
 
@@ -89,7 +93,11 @@
         <div class="movie_container">
             <h2>NEWS CINEMA</h2>
             <div class="movie_grid"><?php echo($html);?></div>
-            <a target="_self" href="?new_results_count=<?php echo $new_results_count; ?>"><button class="voir_plus">PLUS DE NEWS</button></a>
+            <?php if($results_count < $max_count)
+                    { ?>
+                        <a target="_self" href="?new_results_count=<?php echo $new_results_count; ?>"><button class="voir_plus">PLUS DE NEWS</button></a>
+                    <?php 
+                    } ?>
         </div>
     </div>
 </body>
