@@ -1,7 +1,7 @@
 <?php
 
-    $results = isset($_GET['add_more_results']) ? (int) $_GET['add_more_results'] : 6;
-    $add_more_results = $results + 3;
+    $results_count = isset($_GET['new_results_count']) ? (int) $_GET['new_results_count'] : 6;
+    $new_results_count = $results_count + 3;
     
     libxml_use_internal_errors(true); //permet de gérer les erreurs sans crasher tout le script php
 
@@ -43,7 +43,7 @@
     $html = "";
     $items = $xml->channel->item;
 
-    for ($i = 0; $i < $results; $i++) {
+    for ($i = 0; $i < $results_count; $i++) {
         $title = (string)$items[$i]->title;
         $link = strip_tags((string)$items[$i]->link);
         $description = strip_tags((string)$items[$i]->description);
@@ -89,7 +89,7 @@
         <div class="movie_container">
             <h2>NEWS CINEMA</h2>
             <div class="movie_grid"><?php echo($html);?></div>
-            <a target="_self" href="?add_more_results=<?php echo $add_more_results; ?>"><button class="voir_plus">PLUS DE NEWS</button></a>
+            <a target="_self" href="?new_results_count=<?php echo $new_results_count; ?>"><button class="voir_plus">PLUS DE NEWS</button></a>
         </div>
     </div>
 </body>
