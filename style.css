@@ -33,6 +33,9 @@ h1{
     padding: 11px;
     cursor: pointer;
 }
+.movie_container a{
+    margin: auto;
+}
 .searchbar_container button:hover,
 .voir_plus:hover{
     background-color: #dbc200;
