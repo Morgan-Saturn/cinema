@@ -1,5 +1,8 @@
 <?php
 
+    $results_count = isset($_GET['new_results_count']) ? (int) $_GET['new_results_count'] : 6;
+    $new_results_count = $results_count + 3;
+    
     libxml_use_internal_errors(true); //permet de gérer les erreurs sans crasher tout le script php
 
     $contenu = NULL;
@@ -40,7 +43,10 @@
     $html = "";
     $items = $xml->channel->item;
 
-    for ($i = 0; $i < 6; $i++) {
+    $max_count = count($items);
+    $results_count = min($results_count, $max_count); //prend le plus petit des deux, évite notamment de faire planter si l'utilisateur rentre un grand nombre
+
+    for ($i = 0; $i < $results_count; $i++) {
         $title = (string)$items[$i]->title;
         $link = strip_tags((string)$items[$i]->link);
         $description = strip_tags((string)$items[$i]->description);
@@ -53,6 +59,7 @@
                         <p class='summary'>".htmlspecialchars($description)."</p>
                     </div>
                 ";
+        
     }
 ?>
 
@@ -85,8 +92,12 @@
         </div>
         <div class="movie_container">
             <h2>NEWS CINEMA</h2>
-           <div class="movie_grid"><?php echo($html);?>
-            </div>
+            <div class="movie_grid"><?php echo($html);?></div>
+            <?php if($results_count < $max_count)
+                    { ?>
+                        <a target="_self" href="?new_results_count=<?php echo $new_results_count; ?>"><button class="voir_plus">PLUS DE NEWS</button></a>
+                    <?php 
+                    } ?>
         </div>
     </div>
 </body>
