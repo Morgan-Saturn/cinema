@@ -34,10 +34,7 @@
             }
             
         }
-        else
-        {
-            $contenu ??= file_get_contents($cache_allocine);
-        }
+    $contenu ??= file_get_contents($cache_allocine);
 
     $xml = new SimpleXMLElement($contenu);
     $html = "";
