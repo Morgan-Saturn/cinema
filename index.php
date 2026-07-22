@@ -45,7 +45,7 @@
         );
     }
 
-    $convert_to_json = json_encode($data_array, JSON_UNESCAPED_UNICODE);
+    $convert_to_json = json_encode($data_array, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
     echo($convert_to_json);
 
         /*$html .= "
