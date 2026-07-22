@@ -45,7 +45,7 @@
         );
     }
 
-    $convert_to_json = json_encode($data_array);
+    $convert_to_json = json_encode($data_array, JSON_UNESCAPED_UNICODE);
     echo($convert_to_json);
 
         /*$html .= "
@@ -96,6 +96,12 @@
                     } ?>
         </div>
     </div>
-    <script src="index.js"></script>
+    <script>
+        /*const data = <?php echo($convert_to_json); ?>;
+        let array = new Array();
+        array = JSON.parse(data);
+        console.log(array);*/
+        
+    </script>
 </body>
 </html>
