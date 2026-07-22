@@ -36,11 +36,6 @@
         $link = strip_tags((string)$item->link ?? "#");
         $description = strip_tags((string)$item->description ?? "No description");
         $img_url = (string)$item->enclosure->attributes()->url ?? "No image found";
-        
-        /*$json_titles = json_encode($title);
-        $json_links = json_encode($link);
-        $json_descriptions = json_encode($description);
-        $json_imgs = json_encode($img_url);*/
 
         $data_array[] = array(
             "title" => $title,
