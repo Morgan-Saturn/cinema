@@ -97,10 +97,10 @@
         </div>
     </div>
     <script>
-        /*const data = <?php echo($convert_to_json); ?>;
+        const data = <?php echo($convert_to_json); ?>;
         let array = new Array();
-        array = JSON.parse(data);
-        console.log(array);*/
+        array = JSON.parse(JSON.stringify(data));
+        console.log(array);
         
     </script>
 </body>
