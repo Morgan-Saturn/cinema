@@ -30,7 +30,6 @@ async function fetchData() {
                 `;
         }
         parentElement.innerHTML = html;
-        pagination(data);
         
     }
     catch(error){
@@ -39,27 +38,4 @@ async function fetchData() {
 }
 
 fetchData();
-
-//création de la fonction qui s'occupera de la pagination
-function pagination(data) {
-    const allNews = data.length;
-    const resultsPerPage = 3;
-
-    //ceil car cette division peut avoir un reste
-    const totalOfPages = Math.ceil(allNews / resultsPerPage);
-
-    // je m'assure qu'on ne puisse pas avoir un nombre de pages plus grand que ce qui existe déjà au maximum
-    let currentPage = 1;
-    if (currentPage > totalOfPages) {
-        currentPage = totalOfPages;
-    }
-
-    const slicing = Array.from({length: totalOfPages}, (_, index) => {
-        const start = index * resultsPerPage;
-        return data.slice(start, start + resultsPerPage);
-    });
-
-    console.log(slicing);
-}
-
 
