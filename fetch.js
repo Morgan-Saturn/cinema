@@ -1,5 +1,10 @@
 const parentElement = document.querySelector(".movie_grid");
 const loadMore = document.querySelector('.voir_plus');
+/*let page = 3;
+const resultsPerPage = 3;
+const skip = page - 1 * resultsPerPage;
+const allNewsUrl = 'http://localhost/cinema/index.html?'
+const paginatedUrl = `http://localhost/cinema/index.html?limit=${resultsPerPage}&skip=${skip}`;*/
 
 //fetching the json php gives us
 async function fetchData() {
@@ -25,6 +30,7 @@ async function fetchData() {
                 `;
         }
         parentElement.innerHTML = html;
+        pagination(data);
         
     }
     catch(error){
@@ -33,3 +39,24 @@ async function fetchData() {
 }
 
 fetchData();
+
+function pagination(data) {
+    const allNews = data.length;
+    const resultsPerPage = 3;
+
+    //ceil car cette division peut avoir un reste
+    const pageTotal = Math.ceil(allNews / resultsPerPage);
+
+    console.log(allNews);
+    console.log(resultsPerPage);
+    console.log(pageTotal);
+    
+    
+    // je m'assure qu'on ne puisse pas avoir un nombre de pages plus grand que ce qui existe déjà au maximum
+    let currentPage = 1;
+    if (currentPage > pageTotal) {
+        currentPage = pageTotal;
+    }
+}
+
+
