@@ -16,10 +16,6 @@
 
     //putting the parser's data inside of an array and turning it into json
     foreach ($items as $item){
-       /* $title = (string)$items[$i]->title;
-        $link = strip_tags((string)$items[$i]->link);
-        $description = strip_tags((string)$items[$i]->description);
-        $img_url = (string)$items[$i]->enclosure->attributes()->url;}*/
         $title = (string)($item->title ?? "No title");
         $link = strip_tags((string)$item->link ?? "#");
         $description = strip_tags((string)$item->description ?? "No description");
