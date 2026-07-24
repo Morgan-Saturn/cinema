@@ -25,6 +25,8 @@ async function fetchData() {
                 `;
         }
         parentElement.innerHTML = html;
+        
+        
     }
     catch(error){
         console.error(error);
@@ -33,3 +35,7 @@ async function fetchData() {
 
 fetchData();
 
+loadMore.addEventListener('click', () => {
+    data.page = data.page + 1;
+    fetchData();
+});

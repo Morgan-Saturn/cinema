@@ -12,9 +12,6 @@
     $xml = new SimpleXMLElement($contenu);
     $items = $xml->channel->item;
     $data_array = array();
-    $itemPerPage = 3;
-    $currentPage = isset($_GET['page']) ? intval($_GET['page']) : 0;
-
 
     //putting the parser's data inside of an array and turning it into json
     foreach ($items as $item){
@@ -33,6 +30,9 @@
     }
 
     //paginating the news
+    
+    $itemPerPage = 3;
+    $currentPage = isset($_GET['page']) ? intval($_GET['page']) : 0;
     $totalNews = count($data_array);
     $begin = $currentPage * $itemPerPage;
     $paginatedNews = array_slice($data_array,$begin, $itemPerPage);
