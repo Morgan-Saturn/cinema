@@ -1,11 +1,12 @@
 const parentElement = document.querySelector(".movie_grid");
 const loadMore = document.querySelector('.voir_plus');
+let currentPage = 0;
 
 //fetching the json php gives us
-async function fetchData() {
+async function fetchData(currentPage) {
 
     try{
-        const response = await fetch('api.php');
+        const response = await fetch(`api.php?page=${currentPage}`);
 
         if(!response.ok) {
             throw new Error("Couldn't fetch resource");
@@ -24,7 +25,7 @@ async function fetchData() {
                 </div>
                 `;
         }
-        parentElement.innerHTML = html;
+        parentElement.innerHTML += html;
         
         
     }
@@ -33,9 +34,9 @@ async function fetchData() {
     }
 }
 
-fetchData();
+fetchData(currentPage);
 
 loadMore.addEventListener('click', () => {
-    data.page = data.page + 1;
-    fetchData();
+    currentPage ++;
+    fetchData(currentPage);
 });
