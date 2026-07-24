@@ -1,7 +1,9 @@
 const parentElement = document.querySelector(".movie_grid");
 const loadMore = document.querySelector('.voir_plus');
 let currentPage = 0;
-let itemPerPage = 6;
+let itemPerPage = 3;
+let initialPerPage = 6;
+
 
 //fetching the json php gives us
 async function fetchData(currentPage, itemPerPage) {
@@ -27,7 +29,13 @@ async function fetchData(currentPage, itemPerPage) {
                 `;
         }
         parentElement.innerHTML += html;
+        const totalItems = data.total;
+        const totalPages = (totalItems / itemPerPage);
         
+        if(currentPage >= totalPages - 1){
+            loadMore.style.display = 'none';
+        }
+
         
     }
     catch(error){
@@ -35,13 +43,10 @@ async function fetchData(currentPage, itemPerPage) {
     }
 }
 
-fetchData(currentPage, itemPerPage);
+fetchData(currentPage, initialPerPage);
+currentPage = Math.ceil(initialPerPage/itemPerPage -1);
 
 loadMore.addEventListener('click', () => {
-    if (currentPage == 0) {
-        currentPage = currentPage + 1;
-    }
-    itemPerPage = 3;
     currentPage ++;
     fetchData(currentPage, itemPerPage);
 });
