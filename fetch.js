@@ -1,6 +1,7 @@
 const parentElement = document.querySelector(".movie_grid");
 const loadMore = document.querySelector('.voir_plus');
 let currentPage = 0;
+let itemPerPage = 6;
 
 //fetching the json php gives us
 async function fetchData(currentPage) {
