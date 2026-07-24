@@ -39,7 +39,7 @@ fetchData(currentPage, itemPerPage);
 
 loadMore.addEventListener('click', () => {
     if (currentPage == 0) {
-        currentPage = currentPage + 2;
+        currentPage = currentPage + 1;
     }
     itemPerPage = 3;
     currentPage ++;
