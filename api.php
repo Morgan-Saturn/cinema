@@ -31,7 +31,7 @@
 
     //paginating the news
     
-    $itemPerPage = isset($_GET['perPage']) ? intval($_GET['perPage']) : 6;//use get to call it from js like you did for the current page
+    $itemPerPage = isset($_GET['perPage']) ? intval($_GET['perPage']) : 6;
     $currentPage = isset($_GET['page']) ? intval($_GET['page']) : 0;
     $totalNews = count($data_array);
     $begin = $currentPage * $itemPerPage;

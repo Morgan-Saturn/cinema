@@ -4,10 +4,10 @@ let currentPage = 0;
 let itemPerPage = 6;
 
 //fetching the json php gives us
-async function fetchData(currentPage) {
+async function fetchData(currentPage, itemPerPage) {
 
     try{
-        const response = await fetch(`api.php?page=${currentPage}`);
+        const response = await fetch(`api.php?page=${currentPage}&perPage=${itemPerPage}`);
 
         if(!response.ok) {
             throw new Error("Couldn't fetch resource");
@@ -35,9 +35,10 @@ async function fetchData(currentPage) {
     }
 }
 
-fetchData(currentPage);
+fetchData(currentPage, itemPerPage);
 
 loadMore.addEventListener('click', () => {
+    itemPerPage = 3;
     currentPage ++;
-    fetchData(currentPage);
+    fetchData(currentPage, itemPerPage);
 });
