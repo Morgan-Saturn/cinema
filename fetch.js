@@ -1,10 +1,5 @@
 const parentElement = document.querySelector(".movie_grid");
 const loadMore = document.querySelector('.voir_plus');
-/*let page = 3;
-const resultsPerPage = 3;
-const skip = page - 1 * resultsPerPage;
-const allNewsUrl = 'http://localhost/cinema/index.html?'
-const paginatedUrl = `http://localhost/cinema/index.html?limit=${resultsPerPage}&skip=${skip}`;*/
 
 //fetching the json php gives us
 async function fetchData() {
@@ -18,7 +13,7 @@ async function fetchData() {
 
         const data = await response.json();
         let html = '';
-        for (const item of data) {
+        for (const item of data.news) {
             html += `
                 <div class='movie'>
                     <img class='movie_img' src='${item.img}' style='width: 100%; height: 100%;' alt='affiche du film'>
@@ -30,7 +25,6 @@ async function fetchData() {
                 `;
         }
         parentElement.innerHTML = html;
-        
     }
     catch(error){
         console.error(error);

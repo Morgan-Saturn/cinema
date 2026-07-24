@@ -10,9 +10,11 @@
 
 
     $xml = new SimpleXMLElement($contenu);
-    $html = "";
     $items = $xml->channel->item;
     $data_array = array();
+    $itemPerPage = 3;
+    $currentPage = isset($_GET['page']) ? intval($_GET['page']) : 0;
+
 
     //putting the parser's data inside of an array and turning it into json
     foreach ($items as $item){
@@ -27,9 +29,22 @@
             "description" => $description,
             "img" => $img_url
         );
+        
     }
 
-    $convert_to_json = json_encode($data_array, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
+    //paginating the news
+    $totalNews = count($data_array);
+    $begin = $currentPage * $itemPerPage;
+    $paginatedNews = array_slice($data_array,$begin, $itemPerPage);
+
+    $convert_to_json = json_encode(
+        [ 
+            "news" => $paginatedNews,
+            "total" => $totalNews,
+            "page" => $currentPage,
+            "perPage" => $itemPerPage
+        ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
 
 echo $convert_to_json;
+
 
