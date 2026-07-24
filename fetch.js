@@ -38,6 +38,9 @@ async function fetchData(currentPage, itemPerPage) {
 fetchData(currentPage, itemPerPage);
 
 loadMore.addEventListener('click', () => {
+    if (currentPage == 0) {
+        currentPage = currentPage + 2;
+    }
     itemPerPage = 3;
     currentPage ++;
     fetchData(currentPage, itemPerPage);
