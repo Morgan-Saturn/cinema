@@ -31,18 +31,18 @@
 
     //paginating the news
     
-    $itemPerPage = isset($_GET['perPage']) ? intval($_GET['perPage']) : 6;
-    $currentPage = isset($_GET['page']) ? intval($_GET['page']) : 0;
-    $totalNews = count($data_array);
-    $begin = $currentPage * $itemPerPage;
-    $paginatedNews = array_slice($data_array,$begin, $itemPerPage);
+    $item_per_page = isset($_GET['perPage']) ? intval($_GET['perPage']) : 6;
+    $current_page = isset($_GET['page']) ? intval($_GET['page']) : 0;
+    $total_news = count($data_array);
+    $begin = $current_page * $item_per_page;
+    $paginated_news = array_slice($data_array,$begin, $item_per_page);
 
     $convert_to_json = json_encode(
         [ 
-            "news" => $paginatedNews,
-            "total" => $totalNews,
-            "page" => $currentPage,
-            "perPage" => $itemPerPage
+            "news" => $paginated_news,
+            "total" => $total_news,
+            "page" => $current_page,
+            "perPage" => $item_per_page
         ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
 
 echo $convert_to_json;
