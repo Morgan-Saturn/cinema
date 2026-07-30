@@ -1,5 +1,6 @@
 <?php 
 
+function fetch_cinema_news(): array {
     $contenu = NULL;
     $allocine_rss = "https://www.allocine.fr/rss/news-cine.xml";
     $cache_allocine = "cache/cache_allocine.xml";
@@ -52,3 +53,6 @@
             "img" => $img_url
         ); 
     }
+    return $data_array;
+}
+   
