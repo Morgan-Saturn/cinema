@@ -6,19 +6,16 @@
     //getting the xml file inside of $contenu
     require_once 'loading_xml_file.php';
     
-    //paginating the news
-    $item_per_page = isset($_GET['perPage']) ? intval($_GET['perPage']) : 6;
-    $current_page = isset($_GET['page']) ? intval($_GET['page']) : 0;
-    $total_news = count($data_array);
-    $begin = $current_page * $item_per_page;
-    $paginated_news = array_slice($data_array,$begin, $item_per_page);
+    //getting the function that is tasked with paginating the news 
+    require 'pagination.php';
+    $result = pagination($data_array);
 
     $convert_to_json = json_encode(
         [ 
-            "news" => $paginated_news,
-            "total" => $total_news,
-            "page" => $current_page,
-            "perPage" => $item_per_page
+            "news" => $result['paginated_news'],
+            "total" => $result['total_news'],
+            "page" => $result['current_page'],
+            "perPage" => $result['item_per_page']
         ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
 
 echo $convert_to_json;
