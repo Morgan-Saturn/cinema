@@ -1,6 +1,7 @@
 <?php
 
 require 'loading_xml_file.php';
+
     //pagination
     function pagination($data_array) {
         $item_per_page = isset($_GET['perPage']) ? intval($_GET['perPage']) : 6;

@@ -8,7 +8,13 @@
     
     //getting the function that is tasked with paginating the news 
     require 'pagination.php';
+
     $result = pagination($data_array);
+
+    //gestion d'erreur si $data_array n'est pas trouvé
+    if (!isset($data_array) || !is_array($data_array)) {
+        exit("Data not found");
+    }
 
     $convert_to_json = json_encode(
         [ 
