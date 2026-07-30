@@ -19,7 +19,8 @@ h1{
     color: #FFA200;
 }
 .searchbar_container, 
-.movie_container{
+.movie_container,
+.details{
     background-color: #E3E1E1;
 }
 .movie_container{
