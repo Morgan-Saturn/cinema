@@ -9,7 +9,7 @@ let initialPerPage = 6;
 async function fetchData(currentPage, itemPerPage) {
 
     try{
-        const response = await fetch(`api.php?page=${currentPage}&perPage=${itemPerPage}`);
+        const response = await fetch(`/api/cinema/liste?page=${currentPage}&perPage=${itemPerPage}`);
 
         if(!response.ok) {
             throw new Error("Couldn't fetch resource");

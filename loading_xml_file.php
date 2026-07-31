@@ -3,7 +3,7 @@
 function fetch_cinema_news(): array {
     $contenu = NULL;
     $allocine_rss = "https://www.allocine.fr/rss/news-cine.xml";
-    $cache_allocine = "cache/cache_allocine.xml";
+    $cache_allocine = "../cache/cache_allocine.xml";
     
         if (!file_exists($cache_allocine) || time() - filemtime($cache_allocine) > 1800) //1800s = 30 min
         {
