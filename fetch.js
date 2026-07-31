@@ -20,7 +20,9 @@ async function fetchData(currentPage, itemPerPage) {
         for (const item of data.news) {
             html += `
                 <div class='movie'>
-                    <img class='movie_img' src='${item.img}' style='width: 100%; height: 100%;' alt='affiche du film'>
+                    <a href="details.html">
+                        <img class='movie_img' src='${item.img}' style='width: 100%; height: 100%;' alt='affiche du film'>
+                    </a>
                     <h3 class='categories'>
                         <a href='${item.link}'>${item.title}</a>
                     </h3>
