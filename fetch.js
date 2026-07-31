@@ -1,5 +1,6 @@
 const parentElement = document.querySelector(".movie_grid");
 const loadMore = document.querySelector('.voir_plus');
+const detailsParentElement = document.querySelector('.details');
 let currentPage = 0;
 let itemPerPage = 3;
 let initialPerPage = 6;
@@ -37,8 +38,19 @@ async function fetchData(currentPage, itemPerPage) {
         if(currentPage >= totalPages - 1){
             loadMore.style.display = 'none';
         }
-
-        
+        let details_html = '';
+        for (const item of data.news) {
+            details_html = `
+            <div class='movie'>
+                <img class='movie_img' src='${item.img}' style='width: 30%; height: 50%;' alt='affiche du film'>
+                <h3 class='categories'>
+                    <a href='${item.link}'>${item.title}</a>
+                </h3>
+                <p class='summary'>${item.description}</p>
+            </div>
+            `;
+        }
+        detailsParentElement.innerHTML = details_html;
     }
     catch(error){
         console.error(error);

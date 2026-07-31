@@ -45,12 +45,14 @@ function fetch_cinema_news(): array {
         $link = strip_tags((string)$item->link ?? "#");
         $description = strip_tags((string)$item->description ?? "No description");
         $img_url = (string)$item->enclosure->attributes()->url ?? "No image found";
+        $id = (string)($item->guid ?? "id not found");
 
         $data_array[] = array(
             "title" => $title,
             "link" => $link,
             "description" => $description,
-            "img" => $img_url
+            "img" => $img_url,
+            "id" => $id
         ); 
     }
     return $data_array;
