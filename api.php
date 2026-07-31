@@ -37,4 +37,4 @@ if (str_starts_with($request_uri,'/api/cinema/liste')) {
     }*/
 //}
 echo($request_uri);
-var_dump($_SERVER);
+//var_dump($_SERVER);
